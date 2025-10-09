@@ -1,0 +1,18 @@
+{
+  "summary": "The customer is experiencing an installation failure of the software, specifically at 75%, with only a generic \"Installation failed\" error message being displayed, despite multiple attempts to reinstall.",
+  "extracted_issue": "The main technical issue here is that the software installation keeps failing at 75% with an unknown error, as indicated by the \"Installation failed\" message.",
+  "suggested_solution": "1. Check system requirements\n2. Clear temporary files\n3. Run as administrator\n4. Disable antivirus temporarily",
+  "priority_level": "High",
+  "assigned_team": "Technical",
+  "estimated_resolution_time": 8.0,
+  "confidence_score": 0.2,
+  "similar_cases": [],
+  "action_items": [
+    "Route ticket to Technical team",
+    "Set priority as High",
+    "Send initial response to customer",
+    "Schedule immediate team review",
+    "Prepare escalation path if needed"
+  ],
+  "sentiment": "negative"
+}

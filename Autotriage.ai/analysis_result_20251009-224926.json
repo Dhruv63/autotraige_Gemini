@@ -1,0 +1,16 @@
+{
+  "summary": "1. Check system requirements\n2. Clear temporary files\n3. Run as administrator\n4. Disable antivirus temporarily",
+  "extracted_issue": "1. Check system requirements\n2. Clear temporary files\n3. Run as administrator\n4. Disable antivirus temporarily",
+  "suggested_solution": "1. Verify configuration\n2. Check system logs\n3. Test in isolation\n4. Contact support if issue persists",
+  "priority_level": "Medium",
+  "assigned_team": "Technical",
+  "estimated_resolution_time": 24.0,
+  "confidence_score": 0.2,
+  "similar_cases": [],
+  "action_items": [
+    "Route ticket to Technical team",
+    "Set priority as Medium",
+    "Send initial response to customer"
+  ],
+  "sentiment": "1. check system requirements\n2. clear temporary files\n3. run as administrator\n4. disable antivirus temporarily"
+}
