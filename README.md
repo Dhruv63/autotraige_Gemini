@@ -22,23 +22,21 @@ AutoTriage.AI is an AI-powered system that automatically analyzes, categorizes, 
 ## Installation
 
 1. Clone the repository:
-   ```bash
-   git clone https://github.com/Dhruv63/Autotriage.ai.git
-   cd Autotriage.ai
-   ```
+```bash
+
+git clone https://github.com/Dhruv63/Autotriage.ai.git
+
+cd autotriage-ai
+```
 
 2. Install dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
+```bash
+pip install -r requirements.txt
+```
 
-3. Configure your Gemini API Key:
-   - Get your API key from Google AI Studio
-   - Create a file named `.env` in the main project directory
-   - Add your API key to the `.env` file like this:
-     ```
-     GEMINI_API_KEY="YOUR_API_KEY_HERE"
-     ```
+3. Install Ollama for LLM support:
+   - Follow instructions at [Ollama's website](https://ollama.ai)
+   - Pull the Mistral model: `ollama pull mistral`
 
 ## Usage
 
@@ -64,7 +62,7 @@ python run_support.py
 ## Project Structure
 
 ```
-autotriage-ai/
+autotriage-ai/(prototype)
 ├── streamlit_app.py          # Web interface
 ├── example.py                # Example usage
 ├── run_support.py            # CLI interface
@@ -82,7 +80,25 @@ autotriage-ai/
         └── recommender.py   # Solution recommendation
 ```
 
-
+Compelete_mp_v1/
+├── Web Interface
+│   ├── index.html (Main chat interface)
+│   ├── premium_chat.html
+│   └── try.html
+├── Core Application
+│   ├── streamlit_app.py (Main dashboard)
+│   └── api.py (Backend API)
+├── AI Components
+│   └── support_ai/
+│       ├── pipeline.py (Main processing pipeline)
+│       ├── analyzer.py (Ticket analysis)
+│       └── data_loader.py (Data handling)
+├── Utils
+│   ├── process_file.py
+│   ├── diagnostic.py
+│   └── check_csv.py
+└── Data
+    └── ticket_results/ (Processed tickets)
 ## Contributing
 
 1. Fork the repository

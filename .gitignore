@@ -1,0 +1,60 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual Environment
+venv/
+env/
+ENV/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Local development settings
+.env
+
+# Large files and archives
+*.rar
+*.zip
+
+# Runtime data
+ticket_results/
+.streamlit/secrets.toml
+.gemini/
+
+# Unused/Draft files
+try.html
+premium_chat.html
+admin_dashboard.py
+check_csv.py
+check_models.py
+process_file.py
+diagnostic.py

@@ -1,0 +1,36 @@
+Ticket ID,Issue Category,Sentiment,Priority,Solution,Resolution Status,Date of Resolution
+TECH_021,Software Installation Failure,Frustrated,High,Disable antivirus and retry installation,Resolved,17-03-2025
+TECH_022,Software Installation Failure,Frustrated,High,Download from direct link,Resolved,17-03-2025
+TECH_023,Software Installation Failure,Frustrated,High,Update to latest version of antivirus,Resolved,17-03-2025
+TECH_024,Network Connectivity Issue,Confused,Medium,Check app permissions for Local Network,Resolved,16-03-2025
+TECH_025,Network Connectivity Issue,Confused,Medium,Clear app cache and relog,Resolved,16-03-2025
+TECH_026,Network Connectivity Issue,Confused,Medium,Reinstall the app,Resolved,16-03-2025
+TECH_027,Device Compatibility Error,Annoyed,Critical,Rollback app to version 4.9,Resolved,15-03-2025
+TECH_028,Device Compatibility Error,Annoyed,Critical,Offer a discount on a compatible thermostat,Resolved,15-03-2025
+TECH_029,Device Compatibility Error,Annoyed,Critical,Contact thermostat support for an update,Resolved,15-03-2025
+TECH_030,Account Synchronization Bug,Anxious,High,Reset sync token manually,Resolved,14-03-2025
+TECH_031,Account Synchronization Bug,Anxious,High,Force Full Sync on both devices,Resolved,14-03-2025
+TECH_032,Account Synchronization Bug,Anxious,High,Clear app cache and relog,Resolved,14-03-2025
+TECH_033,Payment Gateway Integration Failure,Urgent,Critical,Upgrade server to TLS 1.3,Resolved,13-03-2025
+TECH_034,Payment Gateway Integration Failure,Urgent,Critical,Verify SSL certificate settings,Resolved,13-03-2025
+TECH_035,Payment Gateway Integration Failure,Urgent,Critical,Use a different gateway API,Resolved,13-03-2025
+TECH_036,Payment Gateway Integration Failure,Urgent,Critical,Check server firewall settings,Resolved,13-03-2025
+TECH_037,Application Performance,Annoyed,Medium,Clear application cache and temporary files,Resolved,18-03-2025
+TECH_038,Application Performance,Frustrated,High,Update graphics card drivers to the latest version,Resolved,18-03-2025
+TECH_039,Application Performance,Confused,Medium,Disable background applications to free up system resources,Resolved,19-03-2025
+TECH_040,Data Recovery,Anxious,Critical,Use built-in file history or system restore to recover lost data,Resolved,20-03-2025
+TECH_041,Data Recovery,Urgent,Critical,Recommend professional data recovery service for physical drive failure,Resolved,20-03-2025
+TECH_042,Security Concern,Anxious,High,Advise user to immediately change their password and enable two-factor authentication,Resolved,21-03-2025
+TECH_043,Security Concern,Concerned,Medium,Scan system for malware and remove any suspicious applications,Resolved,21-03-2025
+TECH_044,Email Configuration,Confused,Low,Provide correct server settings (IMAP/SMTP) for their email client,Resolved,22-03-2025
+TECH_045,Email Configuration,Frustrated,Medium,Guide user to re-create their email profile in the application,Resolved,22-03-2025
+TECH_046,Hardware Malfunction,Annoyed,Critical,Guide user through hardware diagnostics to identify the faulty component,Resolved,23-03-2025
+TECH_047,Hardware Malfunction,Urgent,Critical,Arrange for a replacement part to be shipped to the customer,Resolved,23-03-2025
+TECH_048,Software Bug,Frustrated,High,Provide a temporary workaround while the bug is being fixed,Resolved,24-03-2025
+TECH_049,Software Bug,Annoyed,Medium,Ask for detailed steps to reproduce the bug for the development team,Resolved,24-03-2025
+TECH_050,User Interface Confusion,Confused,Low,Provide a link to the relevant section of the user manual or a tutorial video,Resolved,25-03-2025
+TECH_051,Cloud Sync Failure,Frustrated,High,Increase timeout settings on the synchronizer agent,Resolved,26-03-2025
+TECH_052,Cloud Sync Failure,Anxious,Medium,Verify internet upload speed and stability,Resolved,26-03-2025
+TECH_053,Login Credentials,Neutral,Low,Send password reset link to registered email,Resolved,27-03-2025
+TECH_054,Login Credentials,Confused,Low,Guide user to clear browser cookies and retry login,Resolved,27-03-2025
+TECH_055,Feature Request,Positive,Low,Log request for 'Dark Mode' in product roadmap,Resolved,28-03-2025
