@@ -288,19 +288,42 @@ Customer: "Upgrading worked! Thanks for the quick fix!"
                     st.markdown("### 📧 Push via SMTP")
                     with st.expander("Send Email Notification", expanded=False):
                         email_recipient = st.text_input("Recipient Email", value=os.environ.get("BOSS_EMAIL", ""), key=f"email_to_{ticket.get('ticket_id')}")
-                        admin_note = st.text_area("Admin Note (Optional)", key=f"note_{ticket.get('ticket_id')}")
                         
-                        if st.button("📤 Send Email", key=f"send_email_{ticket.get('ticket_id')}"):
-                            with st.spinner("Sending email..."):
-                                try:
-                                    email_service = EmailService()
-                                    success, message = email_service.send_email(ticket, note=admin_note, recipient=email_recipient)
-                                    if success:
-                                        st.success(message)
-                                    else:
-                                        st.error(message)
-                                except Exception as e:
-                                    st.error(f"Error initializing email service: {e}")
+                        col_draft, col_send = st.columns([1, 1])
+                        with col_draft:
+                            if st.button("✨ Generate AI Draft", key=f"draft_{ticket.get('ticket_id')}"):
+                                with st.spinner("Drafting response..."):
+                                    try:
+                                        # We need to call the pipeline directly or via API if separate. 
+                                        # Since streamlit imports pipeline, we can use it directly if initialized?
+                                        # But api.py initializes it. Streamlit also initializes it in load_data/analyze?
+                                        # Streamlit initializes a NEW pipeline instance in analyze_conversation.
+                                        # Let's instantiate a temporary analyzer or reuse one.
+                                        # Better: call the analyzer from the pipeline imported.
+                                        
+                                        # Note: Creating a new pipeline instance might be heavy. 
+                                        # But for this demo let's assume valid env vars.
+                                        temp_pipeline = SupportPipeline()
+                                        draft = temp_pipeline.analyzer.generate_email_draft(ticket)
+                                        st.session_state[f"note_{ticket.get('ticket_id')}"] = draft
+                                        st.rerun()
+                                    except Exception as e:
+                                        st.error(f"Error generating draft: {e}")
+
+                        admin_note = st.text_area("Admin Note / Email Body", key=f"note_{ticket.get('ticket_id')}")
+                        
+                        with col_send:
+                            if st.button("📤 Send Email", key=f"send_email_{ticket.get('ticket_id')}"):
+                                with st.spinner("Sending email..."):
+                                    try:
+                                        email_service = EmailService()
+                                        success, message = email_service.send_email(ticket, note=admin_note, recipient=email_recipient)
+                                        if success:
+                                            st.success(message)
+                                        else:
+                                            st.error(message)
+                                    except Exception as e:
+                                        st.error(f"Error initializing email service: {e}")
 
                     st.divider()
                     
@@ -309,7 +332,9 @@ Customer: "Upgrading worked! Thanks for the quick fix!"
                             # Move file to a 'resolved' folder or just delete for now
                             # For safety in this demo, we'll rename it
                             os.rename(ticket['file_path'], ticket['file_path'] + ".resolved")
+                            st.balloons() # Confetti celebration!
                             st.success(f"Ticket {ticket.get('ticket_id')} resolved!")
+                            time.sleep(1.5) # Let the balloons finish
                             st.rerun()
                         except Exception as e:
                             st.error(f"Could not resolve ticket: {e}")

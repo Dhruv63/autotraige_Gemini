@@ -54,6 +54,19 @@ def chat():
         logging.error(f"Error in /chat endpoint: {e}")
         return jsonify({"error": f"Failed to generate response: {e}"}), 500
 
+@app.route('/generate_draft', methods=['POST'])
+def generate_draft():
+    if not pipeline:
+        return jsonify({"error": "Backend not available"}), 500
+        
+    try:
+        ticket_data = request.get_json()
+        draft = pipeline.analyzer.generate_email_draft(ticket_data)
+        return jsonify({"draft": draft})
+    except Exception as e:
+         logging.error(f"Error generating draft: {e}")
+         return jsonify({"error": str(e)}), 500
+
 @app.route('/submit_ticket', methods=['POST'])
 def submit_ticket():
     if not pipeline:
@@ -74,13 +87,51 @@ def submit_ticket():
         final_analysis['ticket_id'] = ticket_id
         final_analysis['conversation_history'] = conversation_list
         
-        # Check for Critical Priority and Alert Boss
-        if final_analysis.get('priority_level') == 'Critical':
+        # Auto-Email Alert Logic
+        priority = str(final_analysis.get('priority_level', '')).title() # Ensure Title Case (High, Critical)
+        issue_text = final_analysis.get('extracted_issue', '').lower()
+        summary_text = final_analysis.get('summary', '').lower()
+        # Also check the raw conversation just in case
+        raw_text = conversation_text.lower()
+        
+        is_critical = priority == 'Critical'
+        is_high = priority == 'High'
+        
+        feature_keywords = ["new feature", "feature request", "add feature", "enhancement", "suggest a feature", "idea for app"]
+        
+        is_new_feature = any(kw in issue_text for kw in feature_keywords) or \
+                         any(kw in summary_text for kw in feature_keywords) or \
+                         any(kw in raw_text for kw in feature_keywords)
+        
+        logging.info(f"Auto-Email Check: Priority={priority}, NewFeature={is_new_feature}")
+
+        if is_critical or is_high or is_new_feature:
             try:
                 email_service = EmailService()
-                email_service.send_critical_alert(final_analysis)
+                target_email = "prashik2927@gmail.com" # Explicitly requested by user
+                
+                if is_critical:
+                    # Critical alerts usually go to boss_email defined in env, but for consistency with request:
+                    # We will ensure specific attention.
+                    # Original send_critical_alert uses boss_email. 
+                    # Let's use send_email with is_critical flag logic or just update send_critical_alert?
+                    # User said "agar kuch 'new feature' ya high priority rahega toh woh apne aap prashik2927@gmail.com ko jaye"
+                    # So let's force it.
+                    
+                    email_service.send_email(final_analysis, note="Auto-Trigger: Critical Priority", recipient=target_email)
+                    
+                elif is_high or is_new_feature:
+                    reason = []
+                    if is_high: reason.append("High Priority")
+                    if is_new_feature: reason.append("Potential New Feature Request")
+                    
+                    note = f"Auto-Notification Trigger: {', '.join(reason)}"
+                    email_service.send_email(final_analysis, note=note, recipient=target_email)
+                    
+                    logging.info(f"Auto-email sent to {target_email}")
+                    
             except Exception as e:
-                logging.error(f"Could not send email alert: {e}") # Don't fail the ticket submission
+                logging.error(f"Could not send email alert: {e}")
 
         file_path = os.path.join(RESULTS_DIR, f'{ticket_id}.json')
         with open(file_path, 'w') as f:

@@ -158,3 +158,19 @@ Conversation:
             summary=summary, issue=issue, solution=solution, priority=priority,
             team=team, confidence=confidence, similar_cases=similar_cases, sentiment=sentiment
         )
+
+    def generate_email_draft(self, ticket_data: Dict) -> str:
+        prompt = f"""Write a polite and professional email response to a customer from a support agent based on the following ticket details:
+        
+        Customer Issue: {ticket_data.get('extracted_issue')}
+        Proposed Solution: {ticket_data.get('suggested_solution')}
+        
+        The email should:
+        1. Acknowledge the issue.
+        2. Apologize for the inconvenience.
+        3. Clearly explain the solution or next steps.
+        4. Be empathetic and helpful.
+        5. Sign off as "AutoTriage.AI Support Team".
+        
+        Draft:"""
+        return self.query_llm(prompt)
