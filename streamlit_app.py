@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 from support_ai.pipeline import SupportPipeline
+from support_ai.email_service import EmailService
 from support_ai.data_loader import TicketDataLoader
 import plotly.graph_objects as go
 import time
@@ -282,6 +283,25 @@ Customer: "Upgrading worked! Thanks for the quick fix!"
                             else:
                                 st.markdown(f"**🤖 Agent:** {content}")
                                 
+                    st.divider()
+
+                    st.markdown("### 📧 Push via SMTP")
+                    with st.expander("Send Email Notification", expanded=False):
+                        email_recipient = st.text_input("Recipient Email", value=os.environ.get("BOSS_EMAIL", ""), key=f"email_to_{ticket.get('ticket_id')}")
+                        admin_note = st.text_area("Admin Note (Optional)", key=f"note_{ticket.get('ticket_id')}")
+                        
+                        if st.button("📤 Send Email", key=f"send_email_{ticket.get('ticket_id')}"):
+                            with st.spinner("Sending email..."):
+                                try:
+                                    email_service = EmailService()
+                                    success, message = email_service.send_email(ticket, note=admin_note, recipient=email_recipient)
+                                    if success:
+                                        st.success(message)
+                                    else:
+                                        st.error(message)
+                                except Exception as e:
+                                    st.error(f"Error initializing email service: {e}")
+
                     st.divider()
                     
                     if st.button("✅ Mark as Resolved", key=f"resolve_{ticket.get('ticket_id')}"):
