@@ -1,25 +1,16 @@
-# Core dependencies
-numpy>=1.26.0,<1.27.0
-pandas>=2.1.4,<2.2.0
-streamlit==1.29.0
-
-# Visualization
-plotly==5.18.0
-plotly-express==0.4.1
-
-# Machine Learning
-scikit-learn==1.3.2
-
-# Utils
-colorama==0.4.6
-termcolor
-
-# AI & Voice
-ollama
-openai
-speechrecognition
-pyttsx3
+# Core Application
 flask
-Flask-Cors
-google-generativeai
+flask-cors
+streamlit
 python-dotenv
+
+# AI & Machine Learning
+google-generativeai
+scikit-learn
+numpy
+pandas
+plotly
+
+# Utilities
+colorama
+termcolor

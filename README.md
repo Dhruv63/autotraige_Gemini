@@ -1,108 +1,96 @@
-# AutoTriage.AI
+# 🤖 AutoTriage.AI - Next Gen Customer Support
 
+**AutoTriage.AI** is a "World Class" AI-powered support system that autonomously triages customer tickets, analyzes sentiment, suggests technical solutions, and escalates critical issues to management via SMTP.
 
-#alert since ollama runs locally the hosted model isn't showing any new output
+Powered by **Google Gemini 3 (4B)**.
 
+![UI Screenshot](https://via.placeholder.com/800x400?text=AutoTriage+AI+Dashboard) 
+*(Replace with actual screenshot)*
 
-> Let AI diagnose your support mess
+---
 
-AutoTriage.AI is an AI-powered system that automatically analyzes, categorizes, and provides solutions for customer support tickets.
+## ✨ Features
 
-## Features
+- **🧠 Advanced AI Brain**: Powered by `gemma-3-4b-it` for blazing fast, accurate responses.
+- **💬 Modern Chat Interface**: A beautiful, glassmorphism-inspired HTML5 chat widget with markdown support.
+- **⚡ Real-time Triage**: Instantly categorizes tickets by **Priority**, **Sentiment**, and **Department**.
+- **🚨 Smart Escalation**: Automatically detects **Critical** issues (e.g., "System Down") and emails the Boss via SMTP.
+- **🧹 Auto-Response**: Handles ticket submission logic gracefully ("Yes, sure").
+- **📊 Mission Control Dashboard**: A Streamlit-based admin panel to view the "Ticket Inbox" and live analytics.
 
-- Automatic ticket analysis and categorization
-- AI-driven solution recommendations
-- Sentiment analysis
-- Priority assessment
-- Similar case matching
-- Resolution time estimation
-- Interactive web interface
-- Command-line interface
+---
 
-## Installation
+## 🚀 Quick Start
 
-1. Clone the repository:
+### 1. Prerequisites
+- Python 3.10+
+- A Google Cloud API Key (for Gemini)
+- (Optional) Gmail App Password (for SMTP alerts)
+
+### 2. Installation
+Clone the repository and install dependencies:
 ```bash
-
-git clone https://github.com/Dhruv63/Autotriage.ai.git
-
-cd autotriage-ai
-```
-
-2. Install dependencies:
-```bash
+git clone https://github.com/Dhruv63/autotraige_Gemini
+cd autotraige_Gemini
 pip install -r requirements.txt
 ```
 
-3. Install Ollama for LLM support:
-   - Follow instructions at [Ollama's website](https://ollama.ai)
-   - Pull the Mistral model: `ollama pull mistral`
+### 3. Configuration
+Create a `.env` file in the root directory:
+```env
+GEMINI_API_KEY=your_google_api_key_here
 
-## Usage
+# Optional: For Critical Email Alerts
+SMTP_SERVER=smtp.gmail.com
+SMTP_PORT=587
+SMTP_EMAIL=your_email@gmail.com
+SMTP_PASSWORD=your_app_password
+BOSS_EMAIL=manager@company.com
+```
 
-### Web Interface
+### 4. Running the System
 
-Run the Streamlit app:
+**Step A: Start the Backend (Brain)**
+This powers the chat interface and AI logic.
+```bash
+python api.py
+```
+*Server runs on: `http://localhost:5000`*
+
+**Step B: Start the Dashboard (Mission Control)**
+This opens the admin interface.
 ```bash
 streamlit run streamlit_app.py
 ```
+*Dashboard opens at: `http://localhost:8501`*
 
-### Command Line Interface
+**Step C: Use the App**
+Open `index.html` in your browser to chat with the bot!
 
-Run the example script:
-```bash
-python example.py
-```
+---
 
-Or use the support pipeline directly:
-```bash
-python run_support.py
-```
+## 📂 Project Structure
 
-## Project Structure
+- `index.html` - The customer-facing Chat UI.
+- `api.py` - Flask Wrapper that connects the UI to the AI Brain.
+- `streamlit_app.py` - Admin Dashboard for ticket management.
+- `support_ai/` - Core AI Logic (Analyzer, Agents, Pipeline).
+- `ticket_results/` - JSON storage for submitted tickets.
+- `.env` - Security configuration (Not pushed to Git).
 
-```
-autotriage-ai/(prototype)
-├── streamlit_app.py          # Web interface
-├── example.py                # Example usage
-├── run_support.py            # CLI interface
-├── requirements.txt          # Dependencies
-└── support_ai/              # Main package
-    ├── __init__.py
-    ├── pipeline.py          # Main processing pipeline
-    ├── analyzer.py          # Ticket analysis logic
-    ├── data_loader.py       # Data loading utilities
-    └── agents/              # AI agents
-        ├── __init__.py
-        ├── base.py          # Base agent class
-        ├── extractor.py     # Issue extraction
-        ├── summarizer.py    # Text summarization
-        └── recommender.py   # Solution recommendation
-```
+---
 
-Compelete_mp_v1/
-├── Web Interface
-│   ├── index.html (Main chat interface)
-│   ├── premium_chat.html
-│   └── try.html
-├── Core Application
-│   ├── streamlit_app.py (Main dashboard)
-│   └── api.py (Backend API)
-├── AI Components
-│   └── support_ai/
-│       ├── pipeline.py (Main processing pipeline)
-│       ├── analyzer.py (Ticket analysis)
-│       └── data_loader.py (Data handling)
-├── Utils
-│   ├── process_file.py
-│   ├── diagnostic.py
-│   └── check_csv.py
-└── Data
-    └── ticket_results/ (Processed tickets)
-## Contributing
+## 🛠️ Tech Stack
+- **AI Model**: Google Gemma 3 (4B)
+- **Backend**: Flask + Python
+- **Frontend**: HTML5 + CSS3 + Vanilla JS
+- **Dashboard**: Streamlit
+- **Tools**: Google Generative AI SDK, Scikit-Learn (TF-IDF)
 
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+---
+
+## 🤝 Contributing
+Feel free to fork and submit a Pull Request!
+
+---
+*Built with ❤️ by Dhruv.*
